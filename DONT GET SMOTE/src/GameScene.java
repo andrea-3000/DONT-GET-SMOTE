@@ -22,7 +22,6 @@ public class GameScene implements Scene {
 	}
 	
 	public void update() {	
-		GameManager.FRAME_COUNT++;
 		if (!cat.isOnPlatform(platform)) cat.fall();
 	}
 	

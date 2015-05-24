@@ -15,9 +15,7 @@ public class GameManager extends JPanel{
 		
 		Dimension BOARD_DIMENSION = new Dimension(BOARD_WIDTH, BOARD_HEIGHT);
 		
-		scene = new GameScene();
-		
-		if (scene instanceof GameScene) addKeyListener(((GameScene) scene).getCharacter());
+		setScene(new MenuScene());
 		
 		setSize(BOARD_WIDTH, BOARD_HEIGHT);
 		setFocusable(true);
@@ -27,7 +25,14 @@ public class GameManager extends JPanel{
 		
 	}
 	
+	public void setScene(Scene s) {
+		scene = s;
+		
+		if (scene instanceof GameScene) addKeyListener(((GameScene) scene).getCharacter());
+	}
+	
 	public void paint (Graphics g) {
+		FRAME_COUNT++;
 		scene.draw(g);
 		repaint();
 		

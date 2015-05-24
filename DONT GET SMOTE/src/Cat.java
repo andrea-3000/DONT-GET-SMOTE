@@ -17,7 +17,6 @@ public class Cat implements KeyListener{
 	
 	private BufferedImage[] images;
 	private int curImage;
-	private int frameTracker;
 	
 	private boolean isDead;
 	
