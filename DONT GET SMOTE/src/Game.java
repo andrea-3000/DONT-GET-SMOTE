@@ -5,11 +5,11 @@ import javax.swing.JFrame;
 
 public class Game extends JFrame {
 	
-	GameManager board;
+	GameStateManager board;
 
 	public Game() {
-		board = new GameManager();
-		setPreferredSize(new Dimension(GameManager.BOARD_WIDTH,GameManager.BOARD_HEIGHT));
+		board = new GameStateManager();
+		setPreferredSize(new Dimension(GameStateManager.BOARD_WIDTH,GameStateManager.BOARD_HEIGHT));
 		getContentPane().add(board);
 		setVisible(true);
 		pack();

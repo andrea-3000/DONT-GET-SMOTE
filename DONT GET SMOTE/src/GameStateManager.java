@@ -4,18 +4,18 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 
-public class GameManager extends JPanel{
+public class GameStateManager extends JPanel{
 	static final int BOARD_WIDTH = 500;
 	static final int BOARD_HEIGHT = 700;
 	static int FRAME_COUNT = 0;
 	
 	private Scene scene;
 	
-	public GameManager() {
+	public GameStateManager() {
 		
 		Dimension BOARD_DIMENSION = new Dimension(BOARD_WIDTH, BOARD_HEIGHT);
 		
-		setScene(new MenuScene());
+		setScene(new MenuScene(this));
 		
 		setSize(BOARD_WIDTH, BOARD_HEIGHT);
 		setFocusable(true);
@@ -29,6 +29,7 @@ public class GameManager extends JPanel{
 		scene = s;
 		
 		if (scene instanceof GameScene) addKeyListener(((GameScene) scene).getCharacter());
+		else addKeyListener(s);
 	}
 	
 	public void paint (Graphics g) {

@@ -54,7 +54,7 @@ public class Cat implements KeyListener{
 	}
 	
 	public void animate() {
-		if (GameManager.FRAME_COUNT % 6 == 0) curImage++;
+		if (GameStateManager.FRAME_COUNT % 6 == 0) curImage++;
 		if (curImage >= images.length) curImage = 0;
 	}
 	

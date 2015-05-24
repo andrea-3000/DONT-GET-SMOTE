@@ -1,7 +1,8 @@
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 
-public class GameScene implements Scene {
+public class GameScene extends Scene {
 	private ScrollingBackground background;
 	private Cat cat;
 	private Platform platform;
@@ -28,5 +29,13 @@ public class GameScene implements Scene {
 	public Cat getCharacter() {
 		return cat;
 	}
+
+	public void keyTyped(KeyEvent e) {	}
+
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_P); //go to pause screen		
+	}
+
+	public void keyReleased(KeyEvent e) {}
 	
 }

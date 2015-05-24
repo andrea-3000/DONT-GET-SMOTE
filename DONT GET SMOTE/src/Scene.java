@@ -1,8 +1,10 @@
 import java.awt.Graphics;
+import java.awt.event.KeyListener;
 
 
-public interface Scene {
+public abstract class Scene implements KeyListener{
+	GameStateManager gsm;
 	
-	public void draw(Graphics g);
+	public abstract void draw(Graphics g);
 	
 }
