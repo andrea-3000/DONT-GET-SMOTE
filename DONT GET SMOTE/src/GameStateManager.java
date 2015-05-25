@@ -32,6 +32,10 @@ public class GameStateManager extends JPanel{
 		else addKeyListener(s);
 	}
 	
+	public void clearScene(Scene s) {
+		removeKeyListener(s);
+	}
+	
 	public void paint (Graphics g) {
 		FRAME_COUNT++;
 		scene.draw(g);

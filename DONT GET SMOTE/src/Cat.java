@@ -43,16 +43,6 @@ public class Cat implements KeyListener{
 		
 	}
 	
-	public void draw(Graphics g) {
-		g.setColor(Color.RED);
-		
-		if (direction == 0) {
-			g.drawImage(images[curImage], x, y, images[curImage].getWidth(), images[curImage].getHeight(), null);
-		} else {
-			g.drawImage(images[curImage], x+images[curImage].getWidth(), y, -images[curImage].getWidth(), images[curImage].getHeight(), null);
-		}
-	}
-	
 	public void animate() {
 		if (GameStateManager.FRAME_COUNT % 6 == 0) curImage++;
 		if (curImage >= images.length) curImage = 0;
@@ -60,6 +50,7 @@ public class Cat implements KeyListener{
 	
 	public void fall() {
 		y+=2;
+		if (y > GameStateManager.BOARD_HEIGHT) isDead = true;
 	}
 	
 	public boolean isOnPlatform(Platform p) {
@@ -72,7 +63,19 @@ public class Cat implements KeyListener{
 		return true;
 	}
 	
-	public void keyTyped(KeyEvent e) {}
+	public boolean isDead() {
+		return isDead;
+	}
+	
+	public void draw(Graphics g) {
+		g.setColor(Color.RED);
+		
+		if (direction == 0) {
+			g.drawImage(images[curImage], x, y, images[curImage].getWidth(), images[curImage].getHeight(), null);
+		} else {
+			g.drawImage(images[curImage], x+images[curImage].getWidth(), y, -images[curImage].getWidth(), images[curImage].getHeight(), null);
+		}
+	}
 
 	public void keyPressed(KeyEvent e) {
 		animate();
@@ -88,6 +91,7 @@ public class Cat implements KeyListener{
 		}		
 	}
 
+	public void keyTyped(KeyEvent e) {}
 	public void keyReleased(KeyEvent e) {}
 
 }
