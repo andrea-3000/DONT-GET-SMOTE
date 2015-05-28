@@ -1,10 +1,11 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -18,11 +19,10 @@ public class MenuScene extends Scene {
 			"QUIT"
 	};
 	private Flasher flasher;
-	private Font font;
 
 	public MenuScene(GameStateManager gsm) {
 		super(gsm);
-		flasher = new Flasher();
+		flasher = new Flasher();		
 		try {
 			image = ImageIO.read(new File("res/menu_screen.png"));
 		} catch (IOException e) {
@@ -45,14 +45,14 @@ public class MenuScene extends Scene {
 		} else {
 			g.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
 		}
-		//		g.setFont(font);
+		g.setFont(super.getFont());
 		for (int i = 0; i < options.length; i++) {
 			if (i == curChoice) {
 				g.setColor(Color.WHITE);
 			} else {
 				g.setColor(Color.BLACK);
 			}
-			g.drawString(options[i], 300, 500 + i*25);
+			g.drawString(options[i], 300, 550 + i*25);
 		}
 	}
 	

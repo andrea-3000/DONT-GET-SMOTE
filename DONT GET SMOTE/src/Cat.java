@@ -13,17 +13,21 @@ public class Cat implements KeyListener{
 	private int x;
 	private int y;
 	private int speed;
-	private int direction;
+	private int lives;
+	private boolean facingLeft;
+	private boolean leftPressed = false;
+	private boolean rightPressed = false;
 	
 	private BufferedImage[] images;
 	private int curImage;
 	
 	private boolean isDead;
 	
-	public Cat(int x, int y, int speed, String name, int arraySize) {
+	public Cat(int x, int y, String name, int arraySize) {
 		this.x = x;
 		this.y = y;
-		this.speed = speed;
+		this.speed = 1;
+		lives = 9;
 		
 		images = new BufferedImage[arraySize];
 		
@@ -37,14 +41,14 @@ public class Cat implements KeyListener{
 		}
 		
 		curImage = 0;
-		direction = 0;
+		facingLeft = false;
 
 		isDead = false;
 		
 	}
 	
 	public void animate() {
-		if (GameStateManager.FRAME_COUNT % 6 == 0) curImage++;
+		if (x % 5 == 0) curImage++;
 		if (curImage >= images.length) curImage = 0;
 	}
 	
@@ -58,40 +62,59 @@ public class Cat implements KeyListener{
 		return true;		
 	}
 	
-	public boolean isHit(LightningBolt l) {
-		isDead = true;
-		return true;
-	}
-	
 	public boolean isDead() {
 		return isDead;
 	}
 	
 	public void draw(Graphics g) {
 		g.setColor(Color.RED);
-		
-		if (direction == 0) {
+		if (facingLeft) {
 			g.drawImage(images[curImage], x, y, images[curImage].getWidth(), images[curImage].getHeight(), null);
 		} else {
 			g.drawImage(images[curImage], x+images[curImage].getWidth(), y, -images[curImage].getWidth(), images[curImage].getHeight(), null);
 		}
+		update();
+	}
+	
+	public void update() {
+		if (leftPressed)  {
+			x-=speed;
+			animate();
+		}
+		else if (rightPressed) {
+			animate();
+			x+=speed;
+		}
 	}
 
 	public void keyPressed(KeyEvent e) {
-		animate();
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
-			direction = 0;
-			x -= speed;
+			leftPressed = true;
+			facingLeft = true;
+			update();
 			break;
 		case KeyEvent.VK_RIGHT:
-			direction = 1;
-			x += speed;
+			rightPressed = true;
+			facingLeft = false;
+			update();
 			break;
-		}		
+		}
 	}
-
 	public void keyTyped(KeyEvent e) {}
-	public void keyReleased(KeyEvent e) {}
+	public void keyReleased(KeyEvent e) {
+		leftPressed = false;
+		rightPressed = false;
+	}
+	
+	public void harm() {
+		lives--; 
+		if (lives == 0) isDead = true;
+	}
+	public int getX() { return x; }
+	public int getY() { return y; }
+	public int getWidth() { return images[curImage].getWidth(); }
+	public int getHeight() { return images[curImage].getHeight(); }
+	public int getLives() { return lives; }
 
 }

@@ -25,10 +25,8 @@ public class LosingScene extends Scene {
 	private Font font;
 	
 	public LosingScene(GameStateManager gsm) {
-		super(gsm);
-		
-		flasher = new Flasher();
-		
+		super(gsm);		
+		flasher = new Flasher();		
 		try {
 			image = ImageIO.read(new File("res/losing_screen.png"));
 		} catch (IOException e) {
@@ -58,14 +56,14 @@ public class LosingScene extends Scene {
 		} else {
 			g.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
 		}		
-//		g.setFont(font);
+		g.setFont(super.getFont());
 		for (int i = 0; i < options.length; i++) {
 			if (i == curChoice) {
 				g.setColor(Color.WHITE);
 			} else {
 				g.setColor(Color.BLACK);
 			}
-			g.drawString(options[i], 300, 500 + i*25);
+			g.drawString(options[i], 250, 550 + i*25);
 		}
 	}
 
