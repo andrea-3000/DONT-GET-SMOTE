@@ -6,19 +6,27 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 
+/** Creates a background that scrolls using two instances of one image
+ * 
+ * @author Andrea Gonzales
+ *
+ */
 public class ScrollingBackground {
+	/** imageOne and imageTwo are the same; used to stack the same image on top of each other for scrolling */
 	private BufferedImage imageOne;
 	private BufferedImage imageTwo;
 	
+	/** locations of each of the images */
 	private int xOne;
 	private int yOne;
 	
 	private int xTwo;
 	private int yTwo;
 	
+	/** speed at which the background scrolls */
 	private int speed;
 	
-	/**
+	/** Only constructor, intializes the images and speed
 	 * 
 	 * @param x is the x coordinate
 	 * @param y is the y coordinate
@@ -42,7 +50,7 @@ public class ScrollingBackground {
 		this.yOne = y-imageOne.getHeight();
 	}
 	
-	/**
+	/** Displays the two images, updates
 	 * 
 	 * @param g is the Graphics
 	 */
@@ -52,6 +60,9 @@ public class ScrollingBackground {
 		update();
 	}
 	
+	/** Moves the images down and cyles them around
+	 * 
+	 */
 	public void update(){
 		if (yOne < 700 && yOne >= 0){
 			yOne+=speed;

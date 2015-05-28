@@ -10,16 +10,28 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-
+/** MenuScene gives the opening Scene when game starts
+ * 
+ * @author Andrea Gonzales
+ *
+ */
 public class MenuScene extends Scene {
+	/** background image */
 	private BufferedImage image;
+	/** current choice user is on */
 	private int curChoice = 0;
+	/** allows the user to start the game or exit */
 	private String[] options = {
 			"START",
 			"QUIT"
 	};
+	/** creates new Flasher object to generate flashing */
 	private Flasher flasher;
 
+	/** Only constructor, initializes flasher and background image, as well as GameStateManager
+	 * 
+	 * @param gsm GameStateManager
+	 */
 	public MenuScene(GameStateManager gsm) {
 		super(gsm);
 		flasher = new Flasher();		
@@ -30,6 +42,9 @@ public class MenuScene extends Scene {
 		}
 	}
 
+	/** Proceeds or exits the game based on the user's current selection
+	 * 
+	 */
 	public void select() {
 		if (curChoice == 0) {
 			gsm.setScene(new IntroScene(gsm));
@@ -39,6 +54,9 @@ public class MenuScene extends Scene {
 		}
 	}
 
+	/** Displays the image, flashes, and options given to the player
+	 * @param g Graphics
+	 */
 	public void draw(Graphics g) {
 		if (flasher.willFlash()) {
 			flasher.flash(g);
@@ -56,6 +74,9 @@ public class MenuScene extends Scene {
 		}
 	}
 	
+	/** Allows the user to iterate through the selections, press ENTER to proceed or exit based on choice
+	 * 
+	 */
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_ENTER:

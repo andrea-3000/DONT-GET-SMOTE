@@ -2,13 +2,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-
+/** IntroScene provides instructions and context
+ * 
+ * @author Andrea Gonzales
+ *
+ */
 public class IntroScene extends Scene{
-	
+	/** marks current location in string array */
 	private int curChoice = 0;
 	
+	/** gives what text will be displayed during the intro */
 	private String[] textContent = {
-		"INTRO",
+		"INTRO [Press ENTER to continue]",
 		"The Gods are angry!",
 		"They're trying to smite you!",
 		"Press LEFT and RIGHT to dodge lightning.",
@@ -17,11 +22,18 @@ public class IntroScene extends Scene{
 		"DON'T GET SMOTE!"
 	};
 
+	/** only constructor, calls super-constructor of Scene and sets font to 12
+	 * 
+	 * @param gsm GameStateManager
+	 */
 	public IntroScene(GameStateManager gsm) {
 		super(gsm);
 		super.resizeFont(12);
 	}
 	
+	/** Goes through the text that needs to be displayed before proceeding
+	 * 
+	 */
 	public void draw(Graphics g) {
 		g.fillRect(0, 0, GameStateManager.BOARD_WIDTH, GameStateManager.BOARD_HEIGHT);
 		g.setFont(super.getFont());
@@ -32,6 +44,10 @@ public class IntroScene extends Scene{
 
 	}
 	
+	/** Increments curChoice to move through the text that needs to be displayed
+	 * proceeds to GameScene when done
+	 * 
+	 */
 	public void keyPressed(KeyEvent e) {
 		if (KeyEvent.VK_ENTER == e.getKeyCode()) curChoice ++;
 		if (curChoice >= textContent.length) {

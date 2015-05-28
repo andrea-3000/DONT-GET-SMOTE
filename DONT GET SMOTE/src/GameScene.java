@@ -1,15 +1,29 @@
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-
+/** Game Scene houses the actual gameplay
+ * 
+ * @author Andrea Gonzales
+ *
+ */
 public class GameScene extends Scene {
+	/** declares ScrollingBackground to simulate rain*/
 	private ScrollingBackground background;
+	/** declares Cat object for player to intract with  */
 	private Cat cat;
+	/** declares Platform object for cat to stand on */
 	private Platform platform;
+	/** declares Flasher object to create random flashes */
 	private Flasher flasher;
+	/** declares LightningBoltFactory which generates lightningbolts **/
 	private LightningBoltFactory lbf;
+	/** declares HUD to display amount of lives to user */
 	private HUD hud;
 	
+	/** Only constructor, needs a GameStateManager to be created
+	 * 
+	 * @param gsm GameStateManager
+	 */
 	public GameScene(GameStateManager gsm) {
 		super(gsm);
 		flasher = new Flasher();
@@ -20,6 +34,10 @@ public class GameScene extends Scene {
 		hud = new HUD(cat);
 	}
 	
+	/**draw() displays all objects in the game
+	 * 
+	 * @param g Graphics
+	 */
 	public void draw(Graphics g) {
 		g.setFont(super.getFont());
 		if (flasher.willFlash()) flasher.flash(g);
@@ -33,6 +51,10 @@ public class GameScene extends Scene {
 		update();
 	}
 	
+	/** update() checks if cat is dead
+	 * will proceed to next screen if dead
+	 * 
+	 */
 	public void update() {
 		lbf.update();
 		if (!cat.isOnPlatform(platform)) cat.fall();
@@ -47,14 +69,15 @@ public class GameScene extends Scene {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return playable cat
+	 */
 	public Cat getCharacter() {
 		return cat;
 	}
 
-	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_P); //go to pause screen		
-	}
-
+	public void keyPressed(KeyEvent e) {}
 	public void keyTyped(KeyEvent e) {}
 	public void keyReleased(KeyEvent e) {}
 	
