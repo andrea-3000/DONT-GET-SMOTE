@@ -22,7 +22,7 @@ public class GameStateManager extends JPanel{
 	/**creates parent object Scene */
 	private Scene scene;
 	
-	/**only constructor, intializes with new MenuScene
+	/**only constructor, initializes with new MenuScene
 	 * 
 	 */
 	public GameStateManager() {
@@ -47,7 +47,7 @@ public class GameStateManager extends JPanel{
 		scene = s;
 		
 		if (scene instanceof GameScene) addKeyListener(((GameScene) scene).getCharacter());
-		else addKeyListener(s);
+		addKeyListener(s);
 	}
 	
 	/** Allows the removing of scenes (namely, removing the keyListeners to avoid stacking of keyListeners)

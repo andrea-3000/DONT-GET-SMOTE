@@ -41,9 +41,7 @@ public class Cat implements KeyListener{
 		this.y = y;
 		this.speed = 1;
 		lives = 9;
-		
-		images = new BufferedImage[arraySize];
-		
+		images = new BufferedImage[arraySize];		
 		try {
 			for (int i = 0; i < arraySize; i++) {
 				images[i] = ImageIO.read(new File("res/"+name+i+".png"));
@@ -56,8 +54,7 @@ public class Cat implements KeyListener{
 		curImage = 0;
 		facingLeft = false;
 
-		isDead = false;
-		
+		isDead = false;	
 	}
 	
 	/** animate() switches between the frames of animation based on movement

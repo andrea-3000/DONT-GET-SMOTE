@@ -11,13 +11,13 @@ import java.awt.event.KeyEvent;
 public class GameScene extends Scene {
 	/** declares ScrollingBackground to simulate rain*/
 	private ScrollingBackground background;
-	/** declares Cat object for player to intract with  */
+	/** declares Cat object for player to interact with  */
 	private Cat cat;
 	/** declares Platform object for cat to stand on */
 	private Platform platform;
 	/** declares Flasher object to create random flashes */
 	private Flasher flasher;
-	/** declares LightningBoltFactory which generates lightningbolts **/
+	/** declares LightningBoltFactory which generates lightning bolts **/
 	private LightningBoltFactory lbf;
 	/** declares HUD to display amount of lives to user */
 	private HUD hud;
@@ -49,10 +49,15 @@ public class GameScene extends Scene {
 			platform.draw(g);
 			lbf.draw(g);
 			hud.draw(g);
-			g.setColor(Color.BLACK);
-			g.drawString("SCORE: " + Integer.toString(GameStateManager.SCORE), GameStateManager.BOARD_WIDTH/2 + 20, 30);
+			drawStrings(g);
+			
 		}		
 		update();
+	}
+	
+	private void drawStrings(Graphics g) {
+		g.setColor(Color.BLACK);
+		g.drawString("SCORE: " + Integer.toString(GameStateManager.SCORE), GameStateManager.BOARD_WIDTH/2 + 20, 30);
 	}
 	
 	/** update() checks if cat is dead
@@ -82,7 +87,12 @@ public class GameScene extends Scene {
 		return cat;
 	}
 
-	public void keyPressed(KeyEvent e) {}
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_P) {
+			gsm.setScene(new PauseScene(gsm));
+			gsm.clearScene(this);
+		}
+	}
 	public void keyTyped(KeyEvent e) {}
 	public void keyReleased(KeyEvent e) {}
 	
