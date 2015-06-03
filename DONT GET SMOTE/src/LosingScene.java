@@ -73,6 +73,7 @@ public class LosingScene extends Scene {
 			g.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
 		}		
 		g.setFont(super.getFont());
+		g.drawString("SCORE: " + GameStateManager.SCORE, GameStateManager.BOARD_WIDTH/2 - 100, 100);
 		for (int i = 0; i < options.length; i++) {
 			if (i == curChoice) {
 				g.setColor(Color.WHITE);

@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
@@ -47,6 +49,8 @@ public class GameScene extends Scene {
 			platform.draw(g);
 			lbf.draw(g);
 			hud.draw(g);
+			g.setColor(Color.BLACK);
+			g.drawString("SCORE: " + Integer.toString(GameStateManager.SCORE), GameStateManager.BOARD_WIDTH/2 + 20, 30);
 		}		
 		update();
 	}
@@ -58,6 +62,7 @@ public class GameScene extends Scene {
 	public void update() {
 		lbf.update();
 		if (!cat.isOnPlatform(platform)) cat.fall();
+		if (GameStateManager.FRAME_COUNT % 100 == 0) GameStateManager.SCORE++;
 		if (cat.isDead())  {
 			try {
 				Thread.sleep(500);

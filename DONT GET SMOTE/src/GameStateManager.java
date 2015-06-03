@@ -2,6 +2,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /** GameStateManager handles the switching between Scenes; also provides JPanel for Scenes to be drawn on
  * 
@@ -15,6 +16,8 @@ public class GameStateManager extends JPanel{
 	static final int BOARD_HEIGHT = 700;
 	/** starts FRAME_COUNT */
 	static int FRAME_COUNT = 0;
+	/** starts SCORE*/
+	static int SCORE = 0;
 	
 	/**creates parent object Scene */
 	private Scene scene;
